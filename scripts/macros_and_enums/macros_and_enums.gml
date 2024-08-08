@@ -62,4 +62,14 @@ enum bobber_state{
 	
 }
 
+//Dpad enum to use for sprites array instead of numbers
+enum dpad{
+
+	left,
+	right,
+	up,
+	down
+	
+}
+
 #endregion

@@ -1,6 +1,5 @@
 
 //Switching based on the state
-
 switch(my_state){
 	
 	#region Thrown state
@@ -31,7 +30,7 @@ switch(my_state){
 	
 	#endregion
 	
-	#region No fish 
+	#region Fishing
 	
 	case bobber_state.fishing:
 		
@@ -43,15 +42,14 @@ switch(my_state){
 		//If the alarm for fish bite has not been set yet, set a random time
 		if(alarm_timer == 0){
 		
-			alarm_timer = irandom_range(10, 50);
+			alarm_timer = irandom_range(150, 200);
 			alarm[1] = alarm_timer;
 		}
 		
 		//If there isn't a bite yet and the timer has been set
-		if(bite == false && alarm_timer > 0){
+		if(bite == false){
 		
-			//Reduce timer until the alarm for the bite triggers
-			alarm_timer--;
+			scr_timer_reduce(alarm_timer);
 			
 		}
 		
@@ -62,22 +60,37 @@ switch(my_state){
 			
 		}
 		
-		//If there's a bite and the escape timer is still higher than 0
-		if(bite == true && escape_timer > 0){
+		//If there's a bite
+		if(bite == true){
 			
-			//Reduce the timer
-			escape_timer--;
+			//If the mouse button has been pressed
+			if( mouse_check_button(mb_left) ){
 				
+				//Remove prompt
+				scr_prompt_remove(prompt, ui.prompt);
+				
+				//Change state to pulling fish
+				my_state = bobber_state.pulling;
+			
+			}
+			
+			//If the escape timer is still higher than 0, subtract 1
+			scr_timer_reduce(escape_timer);
+			
 		}
 			
 		//If the escape timer is 0, remove the prompt
 		if(escape_timer == 0){
 		
 			scr_prompt_remove(prompt, ui.prompt);
+			bite = false;
+			escape_timer = irandom_range(100, 190);
+			alarm_timer = 0;
 			
 		}
 		
 		#endregion
+		
 		
 		
 	break;
@@ -87,6 +100,53 @@ switch(my_state){
 	#region Being pulled
 	
 	case bobber_state.pulling:
+	
+		//If the alarm reaches 0, trigger alarm
+		if(alarm_timer == 0){
+		
+			alarm[1] = 1;
+		
+		}
+	
+		//If the alarm is not 0 yet, subtract 1
+		//scr_timer_reduce(alarm_timer); //The function here doesn't work for some reason, maybe I need to add a condition
+		if(alarm_timer > 0){
+	
+			alarm_timer--;
+		}
+	
+		//Assign the random direction of the dpad to pass to the player
+		switch(dpad_sprite_num){
+		
+			//Right
+			case 0:
+				
+				global.dpad_to_press = "Left";
+				
+			break;
+			
+			//Left
+			case 1:
+			
+				global.dpad_to_press = "Right";
+				
+			break;
+			
+			//Up
+			case 2:
+			
+				global.dpad_to_press = "Up";
+				
+			break;
+			
+			//Down
+			case 3:
+			
+				global.dpad_to_press = "Down";
+				
+			break;
+			
+		}
 	
 	break;
 	

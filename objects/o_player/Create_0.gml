@@ -15,8 +15,7 @@ text_box = noone;
 
 //Fishing game variables
 fishing = false;
-bobber_x = 0;
-bobber_y = 0;
+fishing_dpad = "";
 
 //States variables
 sprite_state = sprite_states.idle;

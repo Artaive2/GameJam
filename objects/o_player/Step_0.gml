@@ -112,7 +112,7 @@ switch(room){
 	
 	#endregion
 	
-	#region Fishing minigames
+	#region Fishing minigame
 	
 	case RM_Fishing_MiniGame:
 	
@@ -127,23 +127,53 @@ switch(room){
 		
 		#region Fishing mechanics
 		
+		//If a key is pressed, assign it to a variable to check if it matches the dpad
+		if(_right == 1){
+		
+			fishing_dpad = "Right";
+		}
+		
+		if(_left == 1){
+		
+			fishing_dpad = "Left";
+		}
+		
+		if(_up == 1){
+		
+			fishing_dpad = "Up";
+		}
+		
+		if(_down == 1){
+		
+			fishing_dpad = "Down";
+		}
+		
+		//If the left mouse button is clicked
 		if( mouse_check_button(mb_left) ){
 			
+			//Get the x and y of the mouse
 			var _mouse_x = mouse_x;
 			var _mouse_y = mouse_y;
 			
+			//If the bobber object does not exist
 			if( !instance_exists(o_bobber) ){
 			
-				
+				//Create an instance of the bobber object
 				var _bobber = instance_create_depth(x, y, -10000, o_bobber);
-				
-				bobber_x = _bobber.x;
-				bobber_y = _bobber.y;
-				fishing = true;
 				
 			}
 			
 		}
+		
+		//If the button pressed is the same as the dpad
+		if(global.dpad_to_press = fishing_dpad){
+			
+			o_bobber.x += (x - o_bobber.x) * .005;
+			o_bobber.y += (y - o_bobber.y) * .005;
+			
+		
+		}
+		
 		
 		#endregion
 		
