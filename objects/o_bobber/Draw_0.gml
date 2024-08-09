@@ -1,7 +1,8 @@
 draw_self();
 
-//draw_text(5, 5, string(alarm[1]));
-//draw_text(5, 20, string(alarm_timer) );
+draw_text(5, 5, string( x ) );
+draw_text(5, 20, string( o_player.x ) );
+
 
 //If the fish is being pulled
 if(my_state == bobber_state.pulling){

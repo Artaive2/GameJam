@@ -16,6 +16,9 @@ text_box = noone;
 //Fishing game variables
 fishing = false;
 fishing_dpad = "";
+bobber_just_destroyed = false;
+
+alarm_timer = 10;
 
 //States variables
 sprite_state = sprite_states.idle;

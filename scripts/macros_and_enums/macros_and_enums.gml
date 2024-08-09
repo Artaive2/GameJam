@@ -55,7 +55,7 @@ enum Tile{
 //Bobber states
 enum bobber_state{
 
-	thrown,
+	cast,
 	fishing,
 	pulling,
 	caught

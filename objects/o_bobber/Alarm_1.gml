@@ -16,7 +16,7 @@ switch(bite){
 		dpad_sprite_num = irandom(3);
 		
 		//Reset the alarm timer with a random number
-		alarm_timer = irandom_range(50, 200);
+		alarm_timer = irandom_range(50, 120);
 	
 	break;
 	

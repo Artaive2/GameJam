@@ -127,6 +127,9 @@ switch(room){
 		
 		#region Fishing mechanics
 		
+		//A variable to use for checking if any key is being pressed
+		var _keys = _right + _left +_up + _down;
+		
 		//If a key is pressed, assign it to a variable to check if it matches the dpad
 		if(_right == 1){
 		
@@ -148,8 +151,15 @@ switch(room){
 			fishing_dpad = "Down";
 		}
 		
+		//If no key is being pressed, return fishing_dpad to nothing
+		if( _keys == 0){
+		
+			fishing_dpad = "none";
+			
+		}
+		
 		//If the left mouse button is clicked
-		if( mouse_check_button(mb_left) ){
+		if( mouse_check_button(mb_left) && bobber_just_destroyed = false){
 			
 			//Get the x and y of the mouse
 			var _mouse_x = mouse_x;
@@ -165,17 +175,69 @@ switch(room){
 			
 		}
 		
-		//If the button pressed is the same as the dpad
-		if(global.dpad_to_press = fishing_dpad){
+		//If the bobber exists
+		if( instance_exists(o_bobber) ){
 			
-			o_bobber.x += (x - o_bobber.x) * .005;
-			o_bobber.y += (y - o_bobber.y) * .005;
+			var _bobber_x = o_bobber.x;
+			var _bobber_y = o_bobber.y;
 			
-		
+			//If the bobber is being pulled
+			if(o_bobber.my_state = bobber_state.pulling){
+				
+				//If the button pressed is the same as the dpad
+				if(global.dpad_to_press == fishing_dpad){
+				
+					//The amount to use for multiplication
+					var pull_amount = .005;
+					
+					//Clamp the amount so it does not go lower than .002
+					pull_amount = clamp(pull_amount, .002, .005)
+					
+					//Move the bobber towards the player
+					o_bobber.x += (x - _bobber_x) * pull_amount;
+					o_bobber.y += (y - _bobber_y) * pull_amount;
+			
+				}else{//If the key pressed does not match the bobber dpad
+					
+					//The amount to use for multiplication
+					var _escape_amount = .002;
+					
+					//Move the bobber further from the player
+					o_bobber.x += (_bobber_x - x) * _escape_amount;
+					o_bobber.y += (_bobber_y - y) * _escape_amount;
+				
+				}
+			
+			}
+				
 		}
 		
-		
 		#endregion
+		
+		
+		//If the bobber has just been destroyed, wait a few seconds before being able to cast again
+		if(bobber_just_destroyed = true){
+		
+			//If the timer has not reached 0 yet
+			if(alarm_timer > 0){
+			
+				//Subtract 1
+				alarm_timer--;
+			}
+			
+			//If the timer reached 0
+			if(alarm_timer = 0){
+				
+				//Trigger alarm
+				alarm[0] = 2;
+				
+				//Reset timer
+				alarm_timer = 10;
+			
+			}
+			
+		}
+		
 		
 	break;
 	

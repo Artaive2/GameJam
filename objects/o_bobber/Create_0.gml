@@ -19,11 +19,13 @@ alarm_timer = 0;
 escape_timer = irandom_range(100, 190);
 dpad_sprite_num = irandom(3);
 dpad_sprite_to_draw = undefined;
+return_bobber = false;
+//fish = false;
 
 prompt = noone;
 
 //Bobber state
-my_state = bobber_state.thrown;
+my_state = bobber_state.cast;
 
 //Setting the dpad sprites based on key player should press
 /*
