@@ -18,6 +18,9 @@ switch(room){
 	//Arcade room
 	case RM_Arcade_iso:
 	
+		//Set mask for collision
+		mask_index = s_player_idle_down;
+		
 		//States
 		switch(state){
 
@@ -116,7 +119,11 @@ switch(room){
 	
 	case RM_Fishing_MiniGame:
 	
+		//Set depth of the player
 		depth = -1000;
+		
+		//Set the mask used for collision
+		mask_index = s_fishing_player;
 		
 		//Center the character
 		x = room_width / 2;
@@ -178,6 +185,7 @@ switch(room){
 		//If the bobber exists
 		if( instance_exists(o_bobber) ){
 			
+			//Local variables to store bobber x and y positions
 			var _bobber_x = o_bobber.x;
 			var _bobber_y = o_bobber.y;
 			
@@ -209,11 +217,24 @@ switch(room){
 				}
 			
 			}
+			
+			
+			//If the bobber should return to the player or the bobber is being pulled (fished)
+			if(o_bobber.return_bobber = true || o_bobber.my_state = bobber_state.pulling){
+			
+				//Check for a collison with the bobber
+				if( place_meeting(x, y, o_bobber) ){
+				
+					//Change state to caught
+					o_bobber.my_state = bobber_state.caught;
+					
+				}
+				
+			}
 				
 		}
 		
 		#endregion
-		
 		
 		//If the bobber has just been destroyed, wait a few seconds before being able to cast again
 		if(bobber_just_destroyed = true){

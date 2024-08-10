@@ -2,6 +2,7 @@
 sprite_index = s_bobber;
 image_speed = 3;
 
+
 //Get the x and y of the mouse
 target_x = mouse_x;
 target_y = mouse_y;
@@ -10,8 +11,9 @@ target_y = mouse_y;
 target_reached = false;
 thrown = false
 
-//Bobbing variables
+//Animating variables
 bobbing = .08;
+splash = false;
 
 //Fish catching variables
 bite = false;
@@ -20,7 +22,9 @@ escape_timer = irandom_range(100, 190);
 dpad_sprite_num = irandom(3);
 dpad_sprite_to_draw = undefined;
 return_bobber = false;
-//fish = false;
+fish_state = fish_states.no_bite;
+//fish = 0;
+
 
 prompt = noone;
 
@@ -34,6 +38,7 @@ my_state = bobber_state.cast;
 	Up 2
 	Down 3
 */
+
 dpad_sprite[dpad.left] = s_dpad_left;
 dpad_sprite[dpad.right] = s_dpad_right;
 dpad_sprite[dpad.up] = s_dpad_up;

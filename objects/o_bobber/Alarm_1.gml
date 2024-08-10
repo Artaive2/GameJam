@@ -6,6 +6,7 @@ switch(bite){
 	
 		//Let fish bite
 		bite = true;
+		fish_state = fish_states.bite;
 		
 	break;
 	

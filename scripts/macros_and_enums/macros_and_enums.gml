@@ -22,6 +22,7 @@ enum sprite_states{
 
 }
 
+//Moving directions
 enum player_direction{
 
 	down = 0,
@@ -29,7 +30,7 @@ enum player_direction{
 	up = 2
 }
 
-//State machine states
+//Player states
 enum player_states{
 
 	moving,
@@ -70,6 +71,24 @@ enum dpad{
 	up,
 	down
 	
+}
+
+//Fish states
+enum fish_states{
+
+	bite,
+	no_bite,
+	failed_catch
+
+}
+
+//Fishes
+enum fish_sizes{
+
+	small = 1,
+	medium = 5,
+	large = 10
+
 }
 
 #endregion

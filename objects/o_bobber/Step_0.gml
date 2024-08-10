@@ -15,8 +15,9 @@ switch(my_state){
 			//If the bobber has reached the position
 			if( position_meeting(target_x, target_y, self) ){
 			
-				//Change the target_reached variable and state
+				//Change the target_reached variable and state of the bobber
 				target_reached = true;
+				splash = true;
 				my_state = bobber_state.fishing;
 				
 				//Start bobbing
@@ -30,6 +31,7 @@ switch(my_state){
 	
 	#endregion
 	
+	
 	#region Fishing
 	
 	case bobber_state.fishing:
@@ -37,97 +39,133 @@ switch(my_state){
 		//Applying bobbing
 		y += bobbing;
 		
-		#region Bite detection
 		
-		#region No bite
+		#region Fish states
 		
-		//If the alarm for fish bite has not been set yet, set a random time
-		if(alarm_timer == 0){
+		switch(fish_state){
 		
-			alarm_timer = irandom_range(150, 200);
-			alarm[1] = alarm_timer;
-		}
+			#region No bite
 		
-		//If there isn't a bite yet
-		if(bite == false){
+			case fish_states.no_bite:
+			
+				//If the alarm for fish bite has not been set yet, set a random time
+				if(alarm_timer == 0){
 		
-			//If the bobber is in the water and the left mouse button has been pressed
-			if( target_reached = true && mouse_check_button_pressed(mb_left)){
+					alarm_timer = irandom_range(150, 200);
+					alarm[1] = alarm_timer;
+				}
 		
-				//Set return bobber to true so the character pulls the bobber back
-				return_bobber = true;
+				//If there isn't a bite yet
+				if(bite == false){
+		
+					//If the bobber is in the water and the left mouse button has been pressed
+					if( target_reached = true && mouse_check_button_pressed(mb_left)){
+		
+						//Set return bobber to true so the character pulls the bobber back
+						return_bobber = true;
 				
-			}
+					}
 		
-			//SCRIPT FUNCTION DID NOT WORK
-			//If the alarm timer has not reached 0 yet
-			if(alarm_timer > 0){
+					//SCRIPT FUNCTION DID NOT WORK
+					//If the alarm timer has not reached 0 yet
+					if(alarm_timer > 0){
 	
-				//Reduce timer until the alarm for the bite trigger
-				alarm_timer--;
+						//Reduce timer until the alarm for the bite trigger
+						alarm_timer--;
 			
-			}
+					}
 			
-		}
-		
-		#endregion
-		
-		#region Bite
-		
-		//If a bite has been triggered, pop a prompt, and start timer for when fish escapes
-		if(bite == true && prompt == noone){
-		
-			prompt = scr_prompt_pop(self, x, y - 20);
-			
-		}
-		
-		//If there's a bite
-		if(bite == true){
-			
-			//If the mouse button has been pressed
-			if( mouse_check_button(mb_left) ){
+				}
 				
-				//Remove prompt
-				scr_prompt_remove(prompt, ui.prompt);
+			break;
+			
+			#endregion
+			
+			
+			#region Bite
+			
+			case fish_states.bite:
+			
+				//If a bite has been triggered, pop a prompt, and start timer for when fish escapes
+				if(bite == true && prompt == noone){
+		
+					prompt = scr_prompt_pop(self, x, y - 20);
+			
+				}
+		
+				//If there's a bite
+				if(bite == true){
+			
+					//If the mouse button has been pressed
+					if( mouse_check_button(mb_left) ){
 				
-				//Change state to pulling fish
-				my_state = bobber_state.pulling;
+						//Remove prompt
+						scr_prompt_remove(prompt, ui.prompt);
+				
+						//Change state to pulling fish
+						my_state = bobber_state.pulling;
 			
-			}
+					}
 			
-			//SCRIPT FUNCTION DID NOT WORK
-			//If the escape timer is still higher than 0, subtract 1
-			if(escape_timer > 0){
+					//SCRIPT FUNCTION DID NOT WORK
+					//If the escape timer is still higher than 0, subtract 1
+					if(escape_timer > 0){
 	
-				//Reduce timer until the it reaches 0 for the escape
-				escape_timer--;
+						//Reduce timer until the it reaches 0 for the escape
+						escape_timer--;
 			
-			}
+					}
 			
+				}
+				
+				
+				//If the escape timer reaches 0
+				if(escape_timer == 0){
+		
+					//Remove the prompt
+					scr_prompt_remove(prompt, ui.prompt);
+			
+					//Reset the bite to false
+					bite = false;
+			
+					//Reset the escape alarm to a random value
+					escape_timer = irandom_range(100, 190);
+			
+					//Reset the bite alarm to 0
+					alarm_timer = 0;
+					
+					//Set fish state
+					fish_state = fish_states.no_bite;
+			
+				}
+				
+				
+			break;
+			
+			#endregion
+			
+			
+			#region Failed catch
+			
+			case fish_states.failed_catch:
+			
+				if(alarm_timer > 0){
+				
+					alarm_timer--;
+				}
+				
+				if(alarm_timer = 0){
+				
+					return_bobber = true;
+				}
+			
+			break;
+			
+		
 		}
 		
 		#endregion
 		
-		#region Escaped
-		
-		//If the escape timer reaches 0
-		if(escape_timer == 0){
-		
-			//Remove the prompt
-			scr_prompt_remove(prompt, ui.prompt);
-			
-			//Reset the bite to false
-			bite = false;
-			
-			//Reset the escape alarm to a random value
-			escape_timer = irandom_range(100, 190);
-			
-			//Reset the bite alarm to 0
-			alarm_timer = 0;
-			
-		}
-		
-		#endregion
 		
 		#endregion
 		
@@ -135,6 +173,7 @@ switch(my_state){
 	break;
 
 	#endregion
+	
 	
 	#region Being pulled
 	
@@ -190,8 +229,9 @@ switch(my_state){
 		//If the bobber gets too far from the player, the state changes to caught and player gets no points
 		if( x < 5 || y < 5 || x > (room_width - 5) || y > (room_width - 5) ){
 		
-			//Set return_bobber to true
-			return_bobber = true;
+			fish_state = fish_states.failed_catch;
+			my_state = bobber_state.fishing;
+			alarm_timer = 10;
 			
 		}
 		
@@ -221,21 +261,12 @@ switch(my_state){
 	#endregion
 	
 }
-
-
-//If the bobber reaches the player
-if( position_meeting(x, y, o_player) ){
-				
-	//Change state to caught
-	my_state = bobber_state.caught;
-					
-}
 		
 //If the bobber is supposed to return to the player
 if(return_bobber = true){
 
 	//Return the bobber to the player
-	x += (o_player.x - x) * .8;
-	y += (o_player.y - y) * .8;
+	x += (o_player.x - x) * .5;
+	y += (o_player.y - y) * .5;
 	
 }

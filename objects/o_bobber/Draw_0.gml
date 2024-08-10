@@ -1,8 +1,7 @@
 draw_self();
 
-draw_text(5, 5, string( x ) );
-draw_text(5, 20, string( o_player.x ) );
-
+draw_text(5, 5, string( fish_sizes.large ) );
+//draw_text(5, 20, string( fish_state ) );
 
 //If the fish is being pulled
 if(my_state == bobber_state.pulling){
