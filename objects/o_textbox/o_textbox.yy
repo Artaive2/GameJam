@@ -1,9 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"o_prompt",
+  "%Name":"o_textbox",
   "eventList":[],
   "managed":true,
-  "name":"o_prompt",
+  "name":"o_textbox",
   "overriddenProperties":[],
   "parent":{
     "name":"UI",
@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"s_prompt",
-    "path":"sprites/s_prompt/s_prompt.yy",
+    "name":"s_fishing_textbox",
+    "path":"sprites/s_fishing_textbox/s_fishing_textbox.yy",
   },
   "spriteMaskId":null,
   "visible":true,

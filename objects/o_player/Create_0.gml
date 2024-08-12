@@ -17,6 +17,8 @@ text_box = noone;
 fishing = false;
 fishing_dpad = "";
 bobber_just_destroyed = false;
+escape_amount = 0;
+pull_amount = 0;
 
 alarm_timer = 10;
 

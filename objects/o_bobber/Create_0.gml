@@ -17,13 +17,16 @@ splash = false;
 
 //Fish catching variables
 bite = false;
+
 alarm_timer = 0;
 escape_timer = irandom_range(100, 190);
+
 dpad_sprite_num = irandom(3);
 dpad_sprite_to_draw = undefined;
+
 return_bobber = false;
 fish_state = fish_states.no_bite;
-//fish = 0;
+fish = 0;
 
 
 prompt = noone;

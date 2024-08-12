@@ -6,11 +6,12 @@ switch(my_state){
 	
 	case bobber_state.cast:
 	
-		//Gradually move the bobber to where the mouse was
+		//If the bobber has not reached the target spot
 		if(target_reached == false){
-
-			x += (target_x - x) * .8;
-			y += (target_y - y) * .8;
+			
+			//Gradually move the bobber to where the mouse was
+			x += (target_x - x) * .2;
+			y += (target_y - y) * .2;
 			
 			//If the bobber has reached the position
 			if( position_meeting(target_x, target_y, self) ){
@@ -231,7 +232,7 @@ switch(my_state){
 		
 			fish_state = fish_states.failed_catch;
 			my_state = bobber_state.fishing;
-			alarm_timer = 10;
+			alarm_timer = 25;
 			
 		}
 		
@@ -239,6 +240,7 @@ switch(my_state){
 	break;
 	
 	#endregion
+	
 	
 	#region Caught
 	
@@ -258,6 +260,7 @@ switch(my_state){
 	
 	break;
 	
+	
 	#endregion
 	
 }
@@ -266,7 +269,22 @@ switch(my_state){
 if(return_bobber = true){
 
 	//Return the bobber to the player
-	x += (o_player.x - x) * .5;
-	y += (o_player.y - y) * .5;
+	x += (o_player.x - x) * .05;
+	y += (o_player.y - y) * .05;
 	
+}
+
+
+//TO REMOVE
+if(keyboard_check_pressed(ord("T"))){
+	
+		fish = fish_sizes.large;
+}
+if(keyboard_check_pressed(ord("Q"))){
+	
+		fish = fish_sizes.medium;
+}
+if(keyboard_check_pressed(ord("U"))){
+	
+		fish = fish_sizes.small;
 }

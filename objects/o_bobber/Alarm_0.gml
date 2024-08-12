@@ -1,3 +1,5 @@
+/// @description Bobbing animation
+
 //Change bobbing direction
 bobbing = -bobbing;
 
