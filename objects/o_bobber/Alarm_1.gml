@@ -10,7 +10,7 @@ switch(bite){
 			
 			#region Choose a fish
 			
-			var _fish = irandom_range(1, 16);
+			var _fish = irandom_range(1, 20);
 			
 			//If the random number is from 1 to 10, pick small fish
 			if(_fish >= 1 && _fish <= 10){
@@ -30,6 +30,13 @@ switch(bite){
 			if(_fish = 16){
 			
 				fish = fish_sizes.large;
+				
+			}
+			
+			//If the random number is 17 to 20, pick time fish
+			if(_fish > 16){
+			
+				fish = fish_sizes.timer;
 				
 			}
 			

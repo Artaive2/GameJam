@@ -9,4 +9,5 @@ if(instance_exists(o_bobber)){
 }
 
 
-//draw_text(10, 20, string(alarm[0]));
+//draw_text(10, 20, string(pull_amount));
+//draw_text(10, 40, string(escape_amount));

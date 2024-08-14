@@ -60,7 +60,7 @@ switch(my_state){
 				if(bite == false){
 		
 					//If the bobber is in the water and the left mouse button has been pressed
-					if( target_reached = true && mouse_check_button_pressed(mb_left)){
+					if( target_reached = true && mouse_check_button_pressed(mb_left) && o_game.game_section = "During"){
 		
 						//Set return bobber to true so the character pulls the bobber back
 						return_bobber = true;
@@ -86,13 +86,6 @@ switch(my_state){
 			#region Bite
 			
 			case fish_states.bite:
-			
-				//If a bite has been triggered, pop a prompt, and start timer for when fish escapes
-				if(bite == true && prompt == noone){
-		
-					prompt = scr_prompt_pop(self, x, y - 20);
-			
-				}
 		
 				//If there's a bite
 				if(bite == true){
@@ -101,7 +94,7 @@ switch(my_state){
 					if( mouse_check_button(mb_left) ){
 				
 						//Remove prompt
-						scr_prompt_remove(prompt, ui.prompt);
+						prompt = noone;
 				
 						//Change state to pulling fish
 						my_state = bobber_state.pulling;
@@ -124,8 +117,8 @@ switch(my_state){
 				if(escape_timer == 0){
 		
 					//Remove the prompt
-					scr_prompt_remove(prompt, ui.prompt);
-			
+					prompt = noone;
+				
 					//Reset the bite to false
 					bite = false;
 			
@@ -150,11 +143,13 @@ switch(my_state){
 			
 			case fish_states.failed_catch:
 			
+				//If the alarm to return to bobber is still higher than 0, reduce 1
 				if(alarm_timer > 0){
 				
 					alarm_timer--;
 				}
 				
+				//If the alarm is 0, return the bobber to the player
 				if(alarm_timer = 0){
 				
 					return_bobber = true;
@@ -162,10 +157,9 @@ switch(my_state){
 			
 			break;
 			
+			#endregion
 		
 		}
-		
-		#endregion
 		
 		
 		#endregion

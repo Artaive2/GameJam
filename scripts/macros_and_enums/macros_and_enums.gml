@@ -22,12 +22,31 @@ enum sprite_states{
 
 }
 
+/*Directions
+		down 0
+		right 1
+		up 2
+		left 3
+		
+		up left 4
+		up right 5
+		
+		down left 6
+		down right 7
+	
+	*/
 //Moving directions
 enum player_direction{
 
 	down = 0,
 	right = 1,
-	up = 2
+	up = 2,
+	left = 3,
+	up_left = 4,
+	up_right = 5,
+	down_left = 6,
+	down_right = 7
+	
 }
 
 //Player states
@@ -87,7 +106,8 @@ enum fish_sizes{
 
 	small = 1,
 	medium = 5,
-	large = 10
+	large = 10,
+	timer = 30
 
 }
 

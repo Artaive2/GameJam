@@ -1,6 +1,5 @@
 //Set sprite
 sprite_index = s_bobber;
-image_speed = 3;
 
 
 //Get the x and y of the mouse

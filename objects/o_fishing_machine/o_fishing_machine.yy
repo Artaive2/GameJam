@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"arcademachine",
-    "path":"sprites/arcademachine/arcademachine.yy",
+    "name":"s_arcade_machine",
+    "path":"sprites/s_arcade_machine/s_arcade_machine.yy",
   },
   "spriteMaskId":null,
   "visible":true,

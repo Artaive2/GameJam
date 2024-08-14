@@ -79,12 +79,6 @@ function scr_movement(_x_movement, _y_movement){
 	
 	#endregion
 	
-	//Mirroring
-	if(x_movement != 0){
-		
-	image_xscale = sign(x_movement);
-	}
-	
 	//Apply movement
 	x += x_movement * _speed;
 	y += y_movement * _speed;
@@ -97,6 +91,13 @@ function scr_set_states(){
 		down 0
 		right 1
 		up 2
+		left 3
+		
+		up left 4
+		up right 5
+		
+		down left 6
+		down right 7
 	
 	*/
 
@@ -104,11 +105,26 @@ function scr_set_states(){
 	player_sprite[sprite_states.idle][0] = s_player_idle_down;
 	player_sprite[sprite_states.idle][1] = s_player_idle_right;
 	player_sprite[sprite_states.idle][2] = s_player_idle_up;
+	player_sprite[sprite_states.idle][3] = s_player_idle_left;
+	
+	player_sprite[sprite_states.idle][4] = s_player_idle_up_left;
+	player_sprite[sprite_states.idle][5] = s_player_idle_up_right;
+	
+	player_sprite[sprite_states.idle][6] = s_player_idle_down_left;
+	player_sprite[sprite_states.idle][7] = s_player_idle_down_right;
+	
 
 	//walking
 	player_sprite[sprite_states.walking][0] = s_player_walk_down;
 	player_sprite[sprite_states.walking][1] = s_player_walk_right;
 	player_sprite[sprite_states.walking][2] = s_player_walk_up;
+	player_sprite[sprite_states.walking][3] = s_player_walk_left;
+	
+	player_sprite[sprite_states.walking][4] = s_player_walk_up_left;
+	player_sprite[sprite_states.walking][5] = s_player_walk_up_right;
+	
+	player_sprite[sprite_states.walking][6] = s_player_walk_down_left;
+	player_sprite[sprite_states.walking][7] = s_player_walk_down_right;
 
 }
 	

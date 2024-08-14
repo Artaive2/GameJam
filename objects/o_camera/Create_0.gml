@@ -1,6 +1,6 @@
 //camera size variables
-camera_width = 960 / 2;
-camera_height = 540 / 2;
+camera_width = 860 / 2;
+camera_height = 860 / 2;
 
 //camera position variables
 camera_x = 0;

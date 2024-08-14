@@ -5,7 +5,12 @@ switch(room){
 	
 	case RM_Fishing_MiniGame:
 	
+		//Reset variables
 		trigger = false;
+		game_section = "Start";
+		fishing_time_limit = 120;
+		
+		
 	
 	break;
 	
