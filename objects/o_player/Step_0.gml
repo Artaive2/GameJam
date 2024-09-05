@@ -1,5 +1,3 @@
-event_inherited();
-
 //Declare local variables for controls
 var _right = 0;
 var _left = 0;
@@ -107,28 +105,21 @@ switch(room){
 		
 				#region //Collision
 		
+		
 				#region Detecting and interacting with machines
 					
 					
 				//Getting the nearby machine
-				var _nearby_machine = collision_rectangle(x - look_range, y - look_range, x + look_range, y + look_range, o_arcade_machines_par, true, true);
+				nearby_machine = collision_rectangle(x - look_range, y - look_range, x + look_range, y + look_range, o_arcade_machine, true, true);
 		
-				//If the player is nearby a machine and the interact key is pressed
-				if(_nearby_machine != noone){
-				
-					//If there isn't a prompt already
-					if(prompt == noone){
-					
-						//Pop a prompt
-						prompt = scr_prompt_pop(_nearby_machine, _nearby_machine.x, _nearby_machine.y - _nearby_machine.sprite_height);
-					
-					}
+				//If the player is nearby a machine 
+				if(nearby_machine != noone){
 				
 					//If the interacting button is pressed
 					if(_interact){
 					
 						//Get the room saved in the nearest machine
-						var _room = _nearby_machine.my_room;
+						var _room = nearby_machine.my_room;
 							
 						//Go to the room
 						room_goto(_room);
@@ -139,11 +130,6 @@ switch(room){
 					
 				#endregion
 					
-				//If not nearby a machine, remove the prompt
-				if(!_nearby_machine /* && !_nearby_npc */){
-			
-					scr_prompt_remove(prompt, ui.prompt);
-				}
 			
 				#endregion
 		

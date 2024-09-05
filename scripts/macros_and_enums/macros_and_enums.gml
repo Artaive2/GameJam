@@ -2,13 +2,15 @@
 
 //The width and height of the map in tiles
 #macro MAP_W 30
-#macro MAP_H 18
+#macro MAP_H 30
 
+//The width and height of the tiles
 #macro TILE_W 128
 #macro TILE_H 62
 
+//The width and height of the room
 #macro ROOM_W 480
-#macro ROOM_H 288
+#macro ROOM_H 480
 
 #endregion
 
@@ -65,13 +67,6 @@ enum ui{
 	
 }
 
-//Tiles
-enum Tile{
-
-	Sprite, //0
-	Z, //1
-}
-
 //Bobber states
 enum bobber_state{
 
@@ -109,6 +104,23 @@ enum fish_sizes{
 	large = 10,
 	timer = 30
 
+}
+
+//Sequence states
+enum seq_states{
+
+	not_playing,
+	playing,
+	waiting,
+	finished
+	
+}
+
+//Tiles
+enum Tile{
+
+	Sprite, //0
+	Z, //1
 }
 
 #endregion

@@ -9,6 +9,17 @@ if(_quit == true){
 }
 
 
+//Take player control if a sequence plays
+if(seq_state = seq_states.playing){
+
+	global.player_control = false;
+
+}else{ //If a equence is finished playing, return control to the player
+
+	global.player_control = true;
+
+}
+
 //Switch what to do based on the room
 switch(room){
 
@@ -16,11 +27,11 @@ switch(room){
 	
 	case RM_Fishing_MiniGame:
 		
-		//If there's no audio playing
+		//If the audio is not already playing
 		if( !audio_is_playing(a_fishing_music) ){
 		
 			//Play audio
-			//audio_play_sound(a_fishing_music, 10, true)
+			//music = audio_play_sound(a_fishing_music, 10, true);
 			
 		}
 		
@@ -111,26 +122,29 @@ switch(room){
 	#endregion
 	
 	
+	case RM_Arcade_iso:
+		
+		//If the audio is not already playing
+		if( !audio_is_playing(a_arcade_room) ){
+			
+			//music = audio_play_sound(a_arcade_room, 10, true);
+			
+		}
+		
+	break;
+	
+	
 }
 
 
 
 #region TO REMOVE
 	
-	
-	
-	
+
 	if(keyboard_check_pressed(ord("C"))){
 	
 		fishing_time_limit -= 100;
 	}
 	
-	//To go to the minigame room quickly
-	var _go_to_game = keyboard_check( ord("F") );
-	
-	if(_go_to_game){
-	
-		room_goto(RM_Fishing_MiniGame);
-	}
 
 #endregion

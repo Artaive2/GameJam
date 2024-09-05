@@ -1,5 +1,7 @@
 #region Variables
 
+shadow_angle = 0;
+
 //Movement variables
 dir = 0;
 x_movement = 0;
@@ -9,9 +11,10 @@ diagonal_spd = .7;
 acceleration = .5;
 
 //Detecting instances
-look_range = 1;
+look_range = 10;
 prompt = noone;
 text_box = noone;
+nearby_machine = noone;
 
 //Fishing game variables
 fishing = false;

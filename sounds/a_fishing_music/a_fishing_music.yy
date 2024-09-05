@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"a_fishing_music.wav",
   "type":0,
-  "volume":0.26,
+  "volume":0.2,
 }

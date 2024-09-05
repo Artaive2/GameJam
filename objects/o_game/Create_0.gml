@@ -1,6 +1,20 @@
 randomize();
-
 depth = -9999;
+
+
+#region Variables
+
+//Audio
+music = 0;
+
+//Sequences
+seq_layer = noone;
+current_seq = noone;
+seq_state = seq_states.not_playing;
+
+#endregion
+
+
 //Fishing game variables
 fishing_time_limit = 120;
 button_sprite_animating = 0;
