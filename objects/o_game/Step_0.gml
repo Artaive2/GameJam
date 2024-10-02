@@ -141,9 +141,30 @@ switch(room){
 #region TO REMOVE
 	
 
-	if(keyboard_check_pressed(ord("C"))){
+	var _in = keyboard_check( ord("I") );
+	var _out = keyboard_check( ord("O") );
 	
-		fishing_time_limit -= 100;
+	if( !instance_exists(o_transition) ){
+	
+		
+		
+		if(_in){
+	
+			var transi = instance_create_layer(0, 0, "layer_ui", o_transition);
+		
+			transi.in = true;
+			transi.circle_size = 300;
+	
+		}
+		
+		if(_out){
+		
+			var transi = instance_create_layer(0, 0, "layer_ui", o_transition);
+			
+			transi.out = true;
+		
+		}
+	
 	}
 	
 

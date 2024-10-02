@@ -1,6 +1,14 @@
 #region Variables
 
+//Light source detecting and shadow casting
 shadow_angle = 0;
+light_range = 200;
+
+nearby_lights_list = -1;
+nearby_machines_list = -1;
+
+num_of_shadows = 0;
+max_num_of_shadows = 3;
 
 //Movement variables
 dir = 0;
@@ -15,6 +23,7 @@ look_range = 10;
 prompt = noone;
 text_box = noone;
 nearby_machine = noone;
+
 
 //Fishing game variables
 fishing = false;

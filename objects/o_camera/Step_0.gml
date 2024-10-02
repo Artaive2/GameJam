@@ -9,8 +9,8 @@ if( instance_exists(o_player) ){
 	camera_y = target.y - (camera_height / 2);
 	
 	//Clamp camera to not go outside of room
-	camera_x = clamp(camera_x, 0, _camera_width);
-	camera_y = clamp(camera_y, 0, _camera_height);
+	//camera_x = clamp(camera_x, 0, _camera_width);
+	//camera_y = clamp(camera_y, 0, _camera_height);
 }
 
 //Set the position of the room

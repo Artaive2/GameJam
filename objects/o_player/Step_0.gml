@@ -36,6 +36,58 @@ switch(room){
 	//Arcade room
 	case RM_Arcade_iso:
 	
+		#region Shadow casting
+		
+		
+		//If the variable does not contain a ds list, create a ds list to store machines that are lit in
+		if (nearby_lights_list = -1 || nearby_lights_list = undefined){ 
+			
+			//Create a ds list
+			nearby_lights_list = ds_list_create();
+			
+			//Clear the list of pre existing data
+			ds_list_clear(nearby_lights_list);
+			
+		}
+		
+		//If the variable does not contain a ds list, create a ds list to store all machines in
+		if(nearby_machines_list = -1 || nearby_machines_list = undefined){
+			
+			//Create a ds list
+			nearby_machines_list = ds_list_create();
+			
+			//Clear the list of preexisting data
+			ds_list_clear(nearby_machines_list);
+			
+		}
+		
+		//Store all nearby machines
+		var _nearby_machines = collision_rectangle_list(x - light_range, y - light_range, x + light_range, y + light_range, o_arcade_machine, false, true, nearby_machines_list, true);
+		
+		//Check through every nearby machine and if they are light sources store them in the light ds list
+		for(var i = 0; i < _nearby_machines - 1; i++){
+		
+			//Store the current nearby machine to check for easy use
+			var _machine = nearby_machines_list[| i];
+			
+			//Check if the current nearby machine to check is a light source
+			if( _machine.light_source = true){
+				
+				//If it is, store it in the light sources ds list
+				nearby_lights_list[| i] = nearby_machines_list[| i];
+				
+				//Add to the number of shadows to cast
+				num_of_shadows++;
+				
+				//Clamp the number so it doesn't go above the maximum number of shadows (3)
+				num_of_shadows = clamp(num_of_shadows, 0, max_num_of_shadows);
+			}
+			
+		}
+		
+		
+		#endregion
+	
 		//States
 		switch(state){
 
@@ -366,4 +418,3 @@ switch(room){
 	#endregion
 		
 }
-	
