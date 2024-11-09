@@ -1,23 +1,12 @@
 //Controls
 var _left_mouse_button = mouse_check_button_pressed(mb_left);
 var _quit = keyboard_check(vk_escape);
+var _quit_minigame = keyboard_check(ord("Q"));
 
 //Quitting game if escape is pressed
 if(_quit == true){
 
 	game_end();
-}
-
-
-//Take player control if a sequence plays
-if(seq_state = seq_states.playing){
-
-	global.player_control = false;
-
-}else{ //If a equence is finished playing, return control to the player
-
-	global.player_control = true;
-
 }
 
 //Switch what to do based on the room
@@ -116,6 +105,17 @@ switch(room){
 		}
 		
 		#endregion
+		
+		//If Q is pressed, quit the minigame
+		if(_quit_minigame){
+			
+			//Go back to the arcade room
+			room_goto(RM_Arcade_iso);
+			
+			//Return control to the player
+			global.player_control = true;
+			
+		}
 			
 	break;
 	
@@ -137,12 +137,10 @@ switch(room){
 }
 
 
-
 #region TO REMOVE
-	
 
 	var _in = keyboard_check( ord("I") );
-	var _out = keyboard_check( ord("O") );
+	
 	
 	if( !instance_exists(o_transition) ){
 	
@@ -152,20 +150,12 @@ switch(room){
 	
 			var transi = instance_create_layer(0, 0, "layer_ui", o_transition);
 		
-			transi.in = true;
-			transi.circle_size = 300;
 	
 		}
 		
-		if(_out){
-		
-			var transi = instance_create_layer(0, 0, "layer_ui", o_transition);
-			
-			transi.out = true;
-		
-		}
 	
 	}
+	
 	
 
 #endregion

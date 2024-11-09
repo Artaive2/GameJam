@@ -1,3 +1,5 @@
+var _camera = view_camera[0];
+
 switch(room){
 
 	//In the fishing minigame room
@@ -8,7 +10,7 @@ switch(room){
 		//var _display_height = room_height * scale;
 		
 		//Apply camera size
-		camera_set_view_size(view_camera[0], room_width, room_height);
+		camera_set_view_size(_camera, room_width, room_height);
 	
 		//Setting window size
 		//window_set_size(_display_width, _display_height);
@@ -25,10 +27,10 @@ switch(room){
 	//In the arcade room
 	case RM_Arcade_iso:
 	
-		var _camera = view_camera[0];
+		
 		
 		//Apply camera size
-		camera_set_view_size(_camera, camera_width, camera_height);
+		camera_set_view_size(_camera, room_width, room_height);
 
 		//Setting window size
 		window_set_size(display_width, display_height);

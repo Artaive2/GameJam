@@ -70,6 +70,7 @@
     {"id":{"name":"RM_MainMenu","path":"rooms/RM_MainMenu/RM_MainMenu.yy",},},
     {"id":{"name":"macros_and_enums","path":"scripts/macros_and_enums/macros_and_enums.yy",},},
     {"id":{"name":"player","path":"scripts/player/player.yy",},},
+    {"id":{"name":"transition","path":"scripts/transition/transition.yy",},},
     {"id":{"name":"ui","path":"scripts/ui/ui.yy",},},
     {"id":{"name":"a_arcade_room","path":"sounds/a_arcade_room/a_arcade_room.yy",},},
     {"id":{"name":"a_fishing_music","path":"sounds/a_fishing_music/a_fishing_music.yy",},},

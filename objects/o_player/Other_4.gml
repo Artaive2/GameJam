@@ -29,7 +29,6 @@ switch(room){
 		y = room_height / 2;
 		
 		
-		
 	break;
 	
 	#endregion

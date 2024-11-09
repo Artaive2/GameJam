@@ -172,9 +172,15 @@ switch(room){
 					
 						//Get the room saved in the nearest machine
 						var _room = nearby_machine.my_room;
-							
+						
+						//Create a transition
+						var _transi = instance_create_layer(0, 0, "layer_ui", o_transition);
+						
+						//Set the target room of the transition to be the room saved in the arcade machine
+						_transi.target_room = _room;
+						
 						//Go to the room
-						room_goto(_room);
+						//room_goto(_room);
 							
 					}
 		

@@ -36,7 +36,7 @@ enum sprite_states{
 		down left 6
 		down right 7
 	
-	*/
+*/
 //Moving directions
 enum player_direction{
 
@@ -104,16 +104,6 @@ enum fish_sizes{
 	large = 10,
 	timer = 30
 
-}
-
-//Sequence states
-enum seq_states{
-
-	not_playing,
-	playing,
-	waiting,
-	finished
-	
 }
 
 //Tiles

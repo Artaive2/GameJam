@@ -7,11 +7,6 @@ depth = -9999;
 //Audio
 music = 0;
 
-//Sequences
-seq_layer = noone;
-current_seq = noone;
-seq_state = seq_states.not_playing;
-
 #endregion
 
 
